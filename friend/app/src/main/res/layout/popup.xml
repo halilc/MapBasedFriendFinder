@@ -59,16 +59,16 @@
             <ImageButton
                 android:id="@+id/message"
                 android:background="@drawable/button_style"
-
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:scaleType="fitCenter"
                  />
 
             <TextView
+                android:id="@+id/message_text"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Mesat At"
+                android:text="Mesaj At"
                 android:textAlignment="center">
 
             </TextView>
@@ -87,6 +87,7 @@
             android:layout_height="80dp"
             android:background="@drawable/heart" />
             <TextView
+                android:id="@+id/like_text"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:textAlignment="center"
@@ -106,6 +107,7 @@
             android:layout_height="80dp"
             android:background="@drawable/close"/>
             <TextView
+                android:id="@+id/exit_text"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:textAlignment="center"

@@ -32,6 +32,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.PopupMenu;
 import android.view.ViewGroup.LayoutParams;
@@ -80,6 +81,11 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         mRelativeLayout = (RelativeLayout) findViewById(R.id.RelativeLayout1);
+
+//        final TextView setting_text = findViewById(R.id.like_text);
+//        final ImageButton all_message = customView.findViewById(R.id.message);
+
+
     }
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -162,12 +168,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     @Override
     public boolean onMarkerClick(Marker marker) {
-//        Toast toast = Toast.makeText(getApplicationContext(),
-//                marker.getTitle(),
-//                Toast.LENGTH_SHORT);
-//        toast.show();
-
-
 
         LayoutInflater inflater = (LayoutInflater) getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
         View customView = inflater.inflate(R.layout.popup,null);
@@ -182,27 +182,34 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mPopupWindow.setAnimationStyle(android.R.style.Animation_Toast);
         mPopupWindow.showAtLocation(mRelativeLayout, Gravity.CENTER,0,0);
 
-
+        final TextView message_text = customView.findViewById(R.id.message_text);
+        final TextView like_text = customView.findViewById(R.id.like_text);
         final ImageButton message_button = customView.findViewById(R.id.message);
+        final ImageButton like_button = customView.findViewById(R.id.like);
+        final ImageButton exit_button = customView.findViewById(R.id.exit);
         final Animation myAnim = AnimationUtils.loadAnimation(this, R.anim.button_anim);
+        final Animation myAnim2 = AnimationUtils.loadAnimation(this, R.anim.button_anim);
         message_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 message_button.startAnimation(myAnim);
-
+                message_text.startAnimation(myAnim);
+            }
+        });
+        like_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                like_button.startAnimation(myAnim2);
+                like_text.startAnimation(myAnim2);
             }
         });
 
-
-
-        ImageButton closeButton = customView.findViewById(R.id.exit);
-        closeButton.setOnClickListener(new View.OnClickListener() {
+        exit_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mPopupWindow.dismiss();
             }
         });
-
 
         sliderView = customView.findViewById(R.id.imageSlider);
         adapter = new SliderAdapterExample(this);
